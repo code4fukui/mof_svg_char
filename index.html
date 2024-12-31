@@ -1,0 +1,85 @@
+<!DOCTYPE html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><link rel="icon" href="data:">
+<title>かわいいもふもふキャラクターSVG</title>
+</head><body>
+<h1>かわいいもふもふキャラクターSVG</h1>
+
+<main id=main></main>
+
+<script type="module">
+const ar = (n) => {
+    const res = new Array(n);
+    for (let i = 0; i < n; i++) res[i] = i;
+    return res;
+};
+
+const generate_svg_frame_fluffy_blob = (frame_num) => {
+    // 浮遊とスクイーズのアニメーション計算
+    const float_height = -15 * Math.sin(frame_num * Math.PI / 7);
+    const squeeze = 0.1 * Math.sin(frame_num * Math.PI / 4);
+    const eye_blink = frame_num % 15 != 0 ? 'scale(1, 1)' : 'scale(1, 0.1)';
+    const fluff_wave = 3 * Math.sin(frame_num * Math.PI / 5);
+
+    return `
+    <svg xmlns="http://www.w3.org/2000/svg" width="300" height="300" viewBox="0 0 300 300">
+        <!-- 背景 -->
+        <rect width="300" height="300" fill="#E6F3FF"/>
+        
+        <!-- 影 -->
+        <ellipse cx="150" cy="250" rx="40" ry="15" fill="#A8C6FA" opacity="0.3"/>
+        
+        <!-- キャラクター本体 -->
+        <g transform="translate(150, ${200 + float_height}) scale(${1 + squeeze}, ${1 - squeeze})">
+            <!-- もふもふ層1 -->
+            ${ar(16).map(i => `
+                <circle cx="${40 * Math.cos(i * Math.PI / 8)}"
+                        cy="${40 * Math.sin(i * Math.PI / 8)}"
+                        r="${15 + fluff_wave + 2 * Math.sin(frame_num * 0.2 + i)}"
+                        fill="#E6EEFF" stroke="#CFE3FF" stroke-width="2"/>
+            `).join("")}
+            
+            <!-- メインボディ -->
+            <circle cx="0" cy="0" r="35" 
+                    fill="#CFE3FF" stroke="#A8C6FA" stroke-width="2"/>
+            
+            <!-- 目 -->
+            <g transform="${eye_blink}">
+                <circle cx="-12" cy="-10" r="4" fill="#6B8EAE"/>
+                <circle cx="12" cy="-10" r="4" fill="#6B8EAE"/>
+                <circle cx="-12" cy="-11" r="1.5" fill="#FFF"/>
+                <circle cx="12" cy="-11" r="1.5" fill="#FFF"/>
+            </g>
+            
+            <!-- ほっぺ -->
+            <circle cx="-20" cy="5" r="6" fill="#A8C6FA" opacity="0.4"/>
+            <circle cx="20" cy="5" r="6" fill="#A8C6FA" opacity="0.4"/>
+        </g>
+        
+        <!-- 周りのキラキラ -->
+        ${ar(5).map(i => `
+            <path d="M ${150 + 60 * Math.cos(frame_num * 0.1 + i)} ${100 + 40 * Math.sin(frame_num * 0.1 + i)} 
+                     l 3,-3 3,3 -3,3 -3,-3"
+                  fill="#A8C6FA" opacity="${0.3 + 0.2 * Math.sin(frame_num * 0.2 + i)}">
+            </path>
+        `).join("")}
+    </svg>
+    `;
+};
+
+let i = 0;
+const show = () => {
+    main.innerHTML = generate_svg_frame_fluffy_blob(i++);
+};
+setInterval(show, 50);
+</script>
+
+<hr>
+ベースプログラム: <a href=https://qiita.com/Tadataka_Takahashi/items/d91add8371d971f2e6ce>SVGアニメーションで作る！かわいいもふもふキャラクターGIF #Python - Qiita</a><br>
+<a href=https://github.com/code4fukui/mof_svg_char/>src on GitHub</a>
+
+<style>
+body {
+    font-family: sans-serif;
+}
+</style>
+
+</body></html>
