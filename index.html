@@ -6,7 +6,7 @@
 <main id=main></main>
 
 <script type="module">
-const ar = (n) => {
+const range = (n) => {
     const res = new Array(n);
     for (let i = 0; i < n; i++) res[i] = i;
     return res;
@@ -30,7 +30,7 @@ const generate_svg_frame_fluffy_blob = (frame_num) => {
         <!-- キャラクター本体 -->
         <g transform="translate(150, ${200 + float_height}) scale(${1 + squeeze}, ${1 - squeeze})">
             <!-- もふもふ層1 -->
-            ${ar(16).map(i => `
+            ${range(16).map(i => `
                 <circle cx="${40 * Math.cos(i * Math.PI / 8)}"
                         cy="${40 * Math.sin(i * Math.PI / 8)}"
                         r="${15 + fluff_wave + 2 * Math.sin(frame_num * 0.2 + i)}"
@@ -55,7 +55,7 @@ const generate_svg_frame_fluffy_blob = (frame_num) => {
         </g>
         
         <!-- 周りのキラキラ -->
-        ${ar(5).map(i => `
+        ${range(5).map(i => `
             <path d="M ${150 + 60 * Math.cos(frame_num * 0.1 + i)} ${100 + 40 * Math.sin(frame_num * 0.1 + i)} 
                      l 3,-3 3,3 -3,3 -3,-3"
                   fill="#A8C6FA" opacity="${0.3 + 0.2 * Math.sin(frame_num * 0.2 + i)}">
