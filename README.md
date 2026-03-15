@@ -1,7 +1,17 @@
 # mof_svg_char
 
-https://code4fukui.github.io/mof_svg_char/
+A cute fluffy character animation created using SVG and JavaScript.
 
-## reference
+## Demo
+View the demo at https://code4fukui.github.io/mof_svg_char/
 
-- [SVGアニメーションで作る！かわいいもふもふキャラクターGIF #Python - Qiita](https://qiita.com/Tadataka_Takahashi/items/d91add8371d971f2e6ce)
+## Features
+- Floating and squeezing animation of the fluffy character
+- Blinking eyes
+- Sparkling effects around the character
+
+## Usage
+Open the `index.html` file in a web browser to see the animation.
+
+## License
+This project is licensed under the terms of the MIT license.
