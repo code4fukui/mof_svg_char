@@ -1,5 +1,7 @@
 # mof_svg_char
 
+> 日本語のREADMEはこちらです: [README.ja.md](README.ja.md)
+
 A cute fluffy character animation created using SVG and JavaScript.
 
 ## Demo
