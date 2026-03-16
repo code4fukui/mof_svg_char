@@ -16,4 +16,4 @@ View the demo at https://code4fukui.github.io/mof_svg_char/
 Open the `index.html` file in a web browser to see the animation.
 
 ## License
-This project is licensed under the terms of the MIT license.
+MIT License — see [LICENSE](LICENSE).
